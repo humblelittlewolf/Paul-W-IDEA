@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <title>Sample Form</title>
+</head>
+
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+
+                <!-- Three line "hamburger" icon for the collapsed navigation -->
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Title on nav bar -->
+            <a class="navbar-brand" href="#">CIS 320</a>
+        </div>
+
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">Home</a></li>
+                <li class="active"><a href="name_list.html">Name List</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>Name List</h1>
+    <button type="button" id="addItem" class="btn btn-primary">Add new item</button>
+    <table id="datatable" class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email Address</th>
+                <th>Phone Number</th>
+                <th>Birthday</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Update Name List</h4>
+            </div>
+
+            <div class="modal-body">
+
+                <form id="my-form" action="javascript:void(0);">
+                    <div class="form-group">
+                        <input type="hidden" id="id" name="id" class="form-control" /><br />
+                        <div id="firstNameDiv" class="form-group has-feedback">
+                            <label class="control-label" for="firstName">First Name:</label>
+                            <input type="text" id="firstName" name="firstName" class="form-control" placeholder="First name" aria-describedby="firstNameStatus"/>
+                            <span id="firstNameGlyph" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            <span id="firstNameStatus" class="sr-only"></span>
+                        </div>
+
+                        <div id="lastNameDiv" class="form-group has-feedback">
+                            <label class="control-label" for="lastName">Last Name:</label>
+                            <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Last name" aria-describedby="lastNameStatus"/>
+                            <span id="lastNameGlyph" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            <span id="lastNameStatus" class="sr-only"></span>
+                        </div>
+
+                        <div id="emailDiv" class="form-group has-feedback">
+                            <label class="control-label" for="email">Email:</label>
+                            <input type="text" id="email" name="email" class="form-control" placeholder="Email" aria-describedby="emailStatus"/>
+                            <span id="emailGlyph" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            <span id="emailStatus" class="sr-only"></span>
+                        </div>
+
+                        <div id="phoneDiv" class="form-group has-feedback">
+                            <label class="control-label" for="phone">Phone Number:</label>
+                            <input type="text" id="phone" name="phone" class="form-control" placeholder="5551115555" aria-describedby="phoneStatus"/>
+                            <span id="phoneGlyph" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            <span id="phoneStatus" class="sr-only"></span>
+                        </div>
+
+                        <div id="birthdayDiv" class="form-group has-feedback">
+                            <label class="control-label" for="birthday">Birthday:</label>
+                            <input type="text" id="birthday" name="birthday" class="form-control" placeholder="yyyy-mm-dd" aria-describedby="birthdayStatus"/>
+                            <span id="birthdayGlyph" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            <span id="birthdayStatus" class="sr-only"></span>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="saveChanges" type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/name_list.js"></script>
+</body>
+</html>
