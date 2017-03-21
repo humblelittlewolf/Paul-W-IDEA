@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import com.google.gson.Gson;
-import webdev.project.first.Person;
 
 @WebServlet(name = "NameListGet")
 public class NameListGet extends HttpServlet {

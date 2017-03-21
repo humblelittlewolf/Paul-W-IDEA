@@ -23,9 +23,9 @@ public class NameListEdit extends HttpServlet {
     public NameListEdit() {
         firstnameValidationPattern = Pattern.compile("^[A-Za-z' -]{1,20}$");
         lastnameValidationPattern = Pattern.compile("^[A-Za-z' -]{1,20}$");
-        emailValidationPattern = Pattern.compile("^[A-Za-z0-9_.-]{1,20}@[a-zA-Z.]{1,20}\.[a-zA-Z]{1,4}$");
+        emailValidationPattern = Pattern.compile("^[A-Za-z0-9_.-]{1,20}@[a-zA-Z.]{1,20}\\.[a-zA-Z]{1,4}$");
         phoneValidationPattern = Pattern.compile("^[0-9]{10}$");
-        birthdayValidationPattern = Pattern.compile("^\d{4}-\d{2}-\d{2}$");
+        birthdayValidationPattern = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -66,7 +66,7 @@ public class NameListEdit extends HttpServlet {
             person.setEmail(email);
             person.setPhone(phone);
             person.setBirthday(birthday);
-            PersonDAO.addPeople(person);
+            PersonDAO.addPerson(person);
         }
         else {
             out.println("Did not pass validation");

@@ -1,3 +1,8 @@
+function clearTable() {
+    $("#datatable tbody tr").empty();
+    console.log("clear");
+}
+
 function updateTable() {
     // Here's where your code is going to go.
     var url = "api/name_list_get";
@@ -14,6 +19,7 @@ function updateTable() {
             var phone = json_result[i].phone;
             var phoneDash = phone.substr(0,3) + '-' + phone.substr(3,3) + '-' + phone.substr(6,4);
             var birthday = json_result[i].birthday;
+            console.log("table time");
 
             var row ='<tr>';
             row += '<td>' + id + '</td>';
@@ -23,11 +29,15 @@ function updateTable() {
             row += '<td>' + phoneDash + '</td>';
             row += '<td>' + birthday + '</td>';
             row += "<td><button type='button' name='delete' class='deleteButton btn' value='" + id + "'>Delete</button></td>";
+            row += "<td><button type='button' name='edit' class='editButton btn' value='" + id + "'>Edit</button></td>";
             row += '</tr>';
             $('#datatable tbody').append(row);
         }
         var buttons = $(".deleteButton");
         buttons.on("click", deleteItem);
+
+        var buttons = $(".editButton");
+        buttons.on("click", editItem);
 
         console.log("Done");
     })
@@ -67,18 +77,22 @@ function showDialogAdd() {
     $('#firstNameGlyph').removeClass("glyphicon-remove");
     $('#firstNameDiv').removeClass("has-success");
     $('#firstNameGlyph').removeClass("glyphicon-ok");
+
     $('#lastNameDiv').removeClass("has-error");
     $('#lastNameGlyph').removeClass("glyphicon-remove");
     $('#lastNameDiv').removeClass("has-success");
     $('#lastNameGlyph').removeClass("glyphicon-ok");
+
     $('#emailDiv').removeClass("has-error");
     $('#emailGlyph').removeClass("glyphicon-remove");
     $('#emailDiv').removeClass("has-success");
     $('#emailGlyph').removeClass("glyphicon-ok");
+
     $('#phoneDiv').removeClass("has-error");
     $('#phoneGlyph').removeClass("glyphicon-remove");
     $('#phoneDiv').removeClass("has-success");
     $('#phoneGlyph').removeClass("glyphicon-ok");
+
     $('#birthdayDiv').removeClass("has-error");
     $('#birthdayGlyph').removeClass("glyphicon-remove");
     $('#birthdayDiv').removeClass("has-success");
@@ -87,17 +101,60 @@ function showDialogAdd() {
     $('#myModal').modal('show');
 }
 
+function editItem(e) {
+    console.debug("Edit");
+    console.debug(e.target.value);
+    console.log("Opening add item dialog");
+    console.log(id);
+
+    $('#id').val(e.target.value)
+    $('#firstName').val(e.target.parentNode.parentNode.querySelectorAll("td")[1].innerHTML);
+    $('#lastName').val(e.target.parentNode.parentNode.querySelectorAll("td")[2].innerHTML);
+    $('#email').val(e.target.parentNode.parentNode.querySelectorAll("td")[3].innerHTML);
+    $('#phone').val(e.target.parentNode.parentNode.querySelectorAll("td")[4].innerHTML);
+    $('#birthday').val(e.target.parentNode.parentNode.querySelectorAll("td")[5].innerHTML);
+
+    $('#firstNameDiv').removeClass("has-error");
+    $('#firstNameGlyph').removeClass("glyphicon-remove");
+    $('#firstNameDiv').removeClass("has-success");
+    $('#firstNameGlyph').removeClass("glyphicon-ok");
+
+    $('#lastNameDiv').removeClass("has-error");
+    $('#lastNameGlyph').removeClass("glyphicon-remove");
+    $('#lastNameDiv').removeClass("has-success");
+    $('#lastNameGlyph').removeClass("glyphicon-ok");
+
+    $('#emailDiv').removeClass("has-error");
+    $('#emailGlyph').removeClass("glyphicon-remove");
+    $('#emailDiv').removeClass("has-success");
+    $('#emailGlyph').removeClass("glyphicon-ok");
+
+    $('#phoneDiv').removeClass("has-error");
+    $('#phoneGlyph').removeClass("glyphicon-remove");
+    $('#phoneDiv').removeClass("has-success");
+    $('#phoneGlyph').removeClass("glyphicon-ok");
+
+    $('#birthdayDiv').removeClass("has-error");
+    $('#birthdayGlyph').removeClass("glyphicon-remove");
+    $('#birthdayDiv').removeClass("has-success");
+    $('#birthdayGlyph').removeClass("glyphicon-ok");
+
+    $('#myModal').modal('show');
+
+}
+
 function jqueryPostButtonAction() {
     var valid_form = validation();
     if (valid_form == true) {
         console.log(valid_form);
         var url = "api/name_list_edit";
+        var idValue = $("#id").val()
         var firstNameValue = $("#firstName").val()
         var lastNameValue = $("#lastName").val()
         var emailValue = $("#email").val()
         var phoneValue = $("#phone").val()
         var birthdayValue = $("#birthday").val()
-        var dataToServer = {firstName: firstNameValue, lastName: lastNameValue, email: emailValue, phone: phoneValue, birthday:birthdayValue };
+        var dataToServer = {id: idValue,firstName: firstNameValue, lastName: lastNameValue, email: emailValue, phone: phoneValue, birthday:birthdayValue };
 
         $.post(url, dataToServer, function (dataFromServer) {
             console.log("Finished calling edit servlet.");

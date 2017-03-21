@@ -25,6 +25,6 @@ public class NameListDelete extends HttpServlet {
         // Just print the data out to confirm we got it.
         out.println("id = "+id);
 
-        PersonDAO.deletePeople(id);
+        PersonDAO.deletePerson(id);
     }
 }
