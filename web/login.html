@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -6,7 +7,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-    <title>Sample Form</title>
+    <title>Login</title>
 </head>
 
 <body>
@@ -30,25 +31,46 @@
 
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="index.html">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="javascript_assignment.html">Javascript Assignment</a></li>
-                <li><a href="test_javascript.html">Test Javascript</a></li>
-                <li><a href="api/name_list_get">Name List JSON</a></li>
+                <li><a href="/api/name_list_get">Name List JSON</a></li>
                 <li><a href="name_list.html">Name List</a></li>
-                <li><a href="login_servlet.html">Login</a></li>
+                <li class="active"><a href="login.html">Login</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
 <div class="container">
-    <h1>Paul Whalen's Index Page for CIS 320 Work</h1>
+    <h1>Login Demo</h1>
+    <h2>Login</h2>
 
-    <p>Hi</p>
+    <div>
+        <input type="text" id="loginID" placeholder="User ID">
+    </div>
+    <label for="login">Login</label>
+    <button id="login">Go</button><br />
+
+    <div id = hideLogout>
+        <h2>Log Out</h2>
+        <button id="log_Out">Log Out</button>
+    </div>
+
+    <h2>Welcome!</h2>
+    <label for="getLogin">Get Login Info</label>
+    <button id="getLogin">Go</button><br />
+
+    <pre id="getSessionResult">
+    </pre>
+
+    <br />
+
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="js/login.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </body>
 </html>

@@ -10,21 +10,59 @@ import java.io.PrintWriter;
 import java.util.List;
 import com.google.gson.Gson;
 
-@WebServlet(name = "NameListGet")
-public class NameListGet extends HttpServlet {
+@WebServlet(name = "name_list_get")
+public class NameListGet extends javax.servlet.http.HttpServlet {
+    protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    }
+
+    protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
 
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
+        List <Person> peopleList = PersonDAO.getPeople();
+        out.print("[");
+        boolean start = false;
 
-        List<Person> listPeople = PersonDAO.getPeople();
+        for (Person person : peopleList) {
+            if (!start) {
+                start = true;
+                out.println();
+            } else
+                out.println(",");
 
-        Gson gson = new Gson();
+            out.print("{\"id\":");
+            out.print("\"");
+            out.print(person.getId());
+            out.print("\",");
 
-        String json = gson.toJson(listPeople);
+            out.print("\"firstName\":");
+            out.print("\"");
+            out.print(person.getFirst());
+            out.print("\",");
 
-        out.println(json);
+            out.print("\"lastName\":");
+            out.print("\"");
+            out.print(person.getLast());
+            out.print("\",");
 
+            out.print("\"email\":");
+            out.print("\"");
+            out.print(person.getEmail());
+            out.print("\",");
+
+            out.print("\"phone\":");
+            out.print("\"");
+            out.print(person.getPhone());
+            out.print("\",");
+
+            out.print("\"birthday\":");
+            out.print("\"");
+            out.print(person.getBirthday());
+            out.print("\"");
+
+            out.print("}");
+        }
+        out.println("\r\n]");
     }
 }

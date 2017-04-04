@@ -1,8 +1,3 @@
-function clearTable() {
-    $("#datatable tbody tr").empty();
-    console.log("clear");
-}
-
 function updateTable() {
     // Here's where your code is going to go.
     var url = "api/name_list_get";
@@ -11,15 +6,18 @@ function updateTable() {
         // json_result is an object. You can set a breakpoint, or print
         // it to see the fields. Specifically, it is an array of objects.
         // Here we loop the array and print the first name.
+        console.log("Stop here");
+        console.log(json_result.length);
         for (var i = 0; i < json_result.length; i++) {
+            console.log("Test statement for loop")
+
             var id = json_result[i].id;
-            var firstName = json_result[i].first;
-            var lastName = json_result[i].last;
+            var firstName = json_result[i].firstName;
+            var lastName = json_result[i].lastName;
             var email = json_result[i].email;
             var phone = json_result[i].phone;
             var phoneDash = phone.substr(0,3) + '-' + phone.substr(3,3) + '-' + phone.substr(6,4);
             var birthday = json_result[i].birthday;
-            console.log("table time");
 
             var row ='<tr>';
             row += '<td>' + id + '</td>';
@@ -41,6 +39,11 @@ function updateTable() {
 
         console.log("Done");
     })
+}
+
+function clearTable() {
+    $("#datatable tbody").empty();
+    console.log("clear");
 }
 
 function deleteItem(e) {
@@ -67,6 +70,7 @@ function showDialogAdd() {
     // Otherwise we'll keep values from when we last
     // opened or hit edit.
     // I'm getting it started, you can finish.
+    $('#id').val("");
     $('#firstName').val("");
     $('#lastName').val("");
     $('#email').val("");
@@ -148,12 +152,13 @@ function jqueryPostButtonAction() {
     if (valid_form == true) {
         console.log(valid_form);
         var url = "api/name_list_edit";
-        var idValue = $("#id").val()
-        var firstNameValue = $("#firstName").val()
-        var lastNameValue = $("#lastName").val()
-        var emailValue = $("#email").val()
-        var phoneValue = $("#phone").val()
-        var birthdayValue = $("#birthday").val()
+        var idValue = $("#id").val();
+        var firstNameValue = $("#firstName").val();
+        console.log("first name" + firstNameValue);
+        var lastNameValue = $("#lastName").val();
+        var emailValue = $("#email").val();
+        var phoneValue = $("#phone").val();
+        var birthdayValue = $("#birthday").val();
         var dataToServer = {id: idValue,firstName: firstNameValue, lastName: lastNameValue, email: emailValue, phone: phoneValue, birthday:birthdayValue };
 
         $.post(url, dataToServer, function (dataFromServer) {

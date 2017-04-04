@@ -51,25 +51,44 @@ public class NameListEdit extends HttpServlet {
         out.println("phone = '"+phone+"'");
         out.println("birthday = '"+birthday+"'");
 
-        Matcher firstValidate = firstnameValidationPattern.matcher(firstName);
-        Matcher lastValidate = lastnameValidationPattern.matcher(lastName);
-        Matcher emailValidate = emailValidationPattern.matcher(email);
-        Matcher phoneValidate = phoneValidationPattern.matcher(phone);
-        Matcher birthdayValidate = birthdayValidationPattern.matcher(birthday);
-        
-        if (firstValidate.find( ) && lastValidate.find() && emailValidate.find() && phoneValidate.find() && birthdayValidate.find()) {
-            out.println("Passed validation");
-            
-            Person person = new Person();
-            person.setFirst(firstName);
-            person.setLast(lastName);
-            person.setEmail(email);
-            person.setPhone(phone);
-            person.setBirthday(birthday);
-            PersonDAO.addPerson(person);
+        Matcher firstM = firstnameValidationPattern.matcher(firstName);
+        Matcher lastM = lastnameValidationPattern.matcher(lastName);
+        Matcher emailM = emailValidationPattern.matcher(email);
+        Matcher phoneM = phoneValidationPattern.matcher(phone);
+        Matcher birthdayM = birthdayValidationPattern.matcher(birthday);
+
+        if (id == null || id.equals("")) {
+            if (firstM.find() && lastM.find() && emailM.find() && phoneM.find() && birthdayM.find()) {
+                out.println("Passed validation");
+                Person person = new Person();
+
+                person.setFirst(firstName);
+                person.setLast(lastName);
+                person.setEmail(email);
+                person.setPhone(phone);
+                person.setBirthday(birthday);
+                PersonDAO.addPerson(person);
+            }
+            else {
+                out.println("Did not pass validation");
+            }
         }
         else {
-            out.println("Did not pass validation");
+            if (firstM.find() && lastM.find() && emailM.find() && phoneM.find() && birthdayM.find()) {
+                out.println("Passed validation");
+                Person person = new Person();
+                int id2 = Integer.parseInt(id);
+                person.setId(id2);
+                person.setFirst(firstName);
+                person.setLast(lastName);
+                person.setEmail(email);
+                person.setPhone(phone);
+                person.setBirthday(birthday);
+                PersonDAO.editPeople(person);
+            }
+            else {
+                out.println("Did not pass validation");
+            }
         }
     }
 }

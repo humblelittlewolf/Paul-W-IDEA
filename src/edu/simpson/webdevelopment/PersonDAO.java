@@ -93,7 +93,7 @@ public class PersonDAO {
         try {
             conn = DBHelper.getConnection();
 
-            String sql = "INSERT INTO person (first, last, email, phone, birthday) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO cis320.person (first, last, email, phone, birthday) VALUES (?, ?, ?, ?, ?)";
 
             stmt = conn.prepareStatement(sql);
 
